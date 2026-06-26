@@ -7,7 +7,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.allittakes.composer.ui.CounterScreen
 import com.example.allittakes.composer.ui.HomeScreen
-import com.example.allittakes.composer.ui.LoginScreen
+import com.example.allittakes.composer.ui.LoadUsersScreen
+import com.example.allittakes.composer.ui.QueryUsersScreen
 import com.example.allittakes.composer.ui.UpdateProfileScreen
 import com.example.allittakes.viewmodels.CounterViewModel
 
@@ -16,12 +17,12 @@ import com.example.allittakes.viewmodels.CounterViewModel
 fun AppNavigation() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = "login") {
-        composable("login") {
-            LoginScreen(
-                onLoginSuccess = {
-                    navController.navigate("home") {
-                        popUpTo("login") { inclusive = true }
+    NavHost(navController = navController, startDestination = "load") {
+        composable("load") {
+            LoadUsersScreen(
+                onFinished = {
+                    navController.navigate("users") {
+                        popUpTo("load") { inclusive = true }
                     }
                 }
             )
@@ -35,15 +36,15 @@ fun AppNavigation() {
                         popUpTo("home") { inclusive = true }
                     }
                 },
-                onCounter = { navController.navigate("counter") }
+                onCounter = { navController.navigate("counter") },
+                onUsers = { navController.navigate("users") },
+                onPosts = { navController.navigate("load") },
             )
         }
 
-        composable("profile") {
-            UpdateProfileScreen(
-                onProfileUpdated = {
-                    navController.popBackStack()
-                }
+        composable("users") {
+            QueryUsersScreen(
+
             )
         }
 
@@ -56,5 +57,7 @@ fun AppNavigation() {
                 }
             )
         }
+
+
     }
 }

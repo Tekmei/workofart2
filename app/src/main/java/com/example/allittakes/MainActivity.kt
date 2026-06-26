@@ -12,6 +12,9 @@ import androidx.compose.ui.Modifier
 
 import androidx.compose.material3.*
 import com.example.allittakes.composer.nav.AppNavigation
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
