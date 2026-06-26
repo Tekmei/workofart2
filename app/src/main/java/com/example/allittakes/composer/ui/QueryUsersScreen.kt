@@ -18,48 +18,33 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.allittakes.data.models.local.db.UserEntity
 import com.example.allittakes.viewmodels.QueryUsersViewModel
 
+
 @Composable
 fun QueryUsersScreen(
     viewModel: QueryUsersViewModel = hiltViewModel()
 ) {
 
-    val state by viewModel.uiState.collectAsState()
+    val users by viewModel.users.collectAsState()
 
     Column {
 
         OutlinedTextField(
-
-            value = state.query,
-
+            value = viewModel.query,
             onValueChange = viewModel::onQueryChanged,
-
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-
             placeholder = {
-
                 Text("Search users")
-
             }
-
         )
 
         LazyColumn {
-
-            items(
-                state.users,
-                key = { it.id }
-            ) {
-
+            items(users, key = { it.id }) {
                 UserItem(it)
-
             }
-
         }
-
     }
-
 }
 
 @Composable
