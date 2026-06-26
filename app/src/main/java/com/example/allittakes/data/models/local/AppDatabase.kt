@@ -12,7 +12,7 @@ import com.example.allittakes.data.models.local.db.UserEntity
     entities = [
         UserEntity::class
     ],
-    version = 2,
+    version = 1,
     exportSchema = false
 )
 @TypeConverters(Converters::class)

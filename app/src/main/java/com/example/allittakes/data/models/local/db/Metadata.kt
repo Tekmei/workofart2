@@ -2,11 +2,11 @@ package com.example.allittakes.data.models.local.db
 
 data class Metadata(
 
-    val loginCount: Int,
+    val loginCount: Int? = null,
 
-    val failedAttempts: Int,
+    val failedAttempts: Int? = null,
 
-    val lastLogin: String,
+    val lastLogin: String? = null,
 
     val subscriptionTier: String? = null,
 
